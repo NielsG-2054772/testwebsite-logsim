@@ -1,0 +1,8 @@
+version: '3'
+services:
+  vue:
+    build: ./logica-simulator-psopv-groep7
+    image: logicsim
+    container_name: "logic_sim_psopv_groep7_container"
+    ports:
+      - "8080:8080"
