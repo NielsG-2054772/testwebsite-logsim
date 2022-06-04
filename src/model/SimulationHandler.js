@@ -63,13 +63,7 @@ export default class SimulationHandler {
     if (component.timing !== undefined) {
       var t = this;
       var intervalId = component.setTimer(t, startClockSimulation);
-      //   var intervalId = setInterval(function () {
-      //     t.simulationQueue.push(component);
-
-      //     if (!t.onGoing) {
-      //       t.startSimulation();
-      //     }
-      //   }, component.timing);
+      
       if (component._isInputSequencer) {
         this.inputSequencers.push(component);
       }

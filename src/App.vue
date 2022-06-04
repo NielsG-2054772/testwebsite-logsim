@@ -1,16 +1,5 @@
 <template>
   <div id="wrapper">
-    <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/> -->
-    <!-- <img
-    alt="Vue logo"
-    src="./assets/logic-gate-and-svgrepo-com.png"
-    width="300"
-    height="300"
-  /> -->
     <div id="navbar" class="navbar">
       <NavBar id="navBar" ref="translatable" />
     </div>
@@ -47,20 +36,6 @@
           ><br /><small id="stepper-text">STEPPER</small>
         </div>
       </div>
-      <!-- <div @click="editmode" id="run-btn" width="30" height="30">
-      <button @click="editmode" class="btn btn-outline-danger" id="edit-btn">
-        <i class="bi bi-pencil"></i><br /><small id="edit-text">EDIT</small>
-
-      <button
-        @click="steppermode"
-        class="btn btn-outline-danger"
-        id="stepper-btn"
-      >
-        <i class="bi bi-arrow-right"></i><br /><small id="stepper-text"
-          >STEPPER</small
-        >
-      </button>
-    </div> -->
 
       <div class="text-right btn btn-group">
         <div
@@ -79,7 +54,7 @@
           ><br /><small id="undo-text">UNDO</small>
         </div>
         <div
-          @click="this.undoEnabled ? undo() : null"
+          @click="this.undoEnabled ? redo() : null"
           id="redo-btn"
           width="30"
           height="30"
@@ -93,13 +68,6 @@
             /> </span
           ><br /><small id="redo-text">REDO</small>
         </div>
-        <!-- <img
-          @click="this.undoEnabled ? undo() : null"
-          id="undo-btn"
-          src="./assets/images/undo.png"
-          width="30"
-          height="30"
-        /> -->
       </div>
     </div>
     <div class="">
@@ -208,7 +176,6 @@ export default {
         document.getElementById("run-btn").disabled = true;
         document.getElementById("stepper-btn").disabled = false;
 
-        //document.getElementById("stepper-text").innerHTML = "STEPPER";
         this.undoEnabled = false;
       } else if (mode === "edit") {
         document.getElementById("run-btn").style.display = "block";
@@ -377,7 +344,6 @@ export default {
     ) {
       localStorage.setItem("lang", "eng");
     }
-    //store.commit("canvasStore/setCurrLanguage", localStorage.getItem("lang"));
     this.setLanguage();
     let t = this;
     setTimeout(() => {
@@ -401,12 +367,6 @@ export default {
       }
     }, 6000);
     document.getElementById("edit-btn").disabled = true;
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") {
-        // document.location.reload(true);
-      }
-    });
 
     setInterval(() => {
       this.keepAwake = !this.keepAwake;
@@ -453,8 +413,8 @@ export default {
   left: 50%;
   width: 30em;
   height: 18em;
-  margin-top: -9em; /*set to a negative number 1/2 of your height*/
-  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  margin-top: -9em;
+  margin-left: -15em; 
 }
 
 .btn {
@@ -479,7 +439,4 @@ export default {
 #redo-btn {
   margin-left: 1em;
 }
-/* #edit-btn {
-  margin-right: 15em;
-} */
 </style>

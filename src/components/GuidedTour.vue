@@ -112,9 +112,6 @@ export default {
       }
       step.style.top = posy + "px";
       step.hidden = true;
-      // if (this.stepcount === 0) {
-      //   step.hidden = false;
-      // }
       var btns = this.getButtons();
       step.appendChild(document.createElement("br"));
       step.appendChild(document.createElement("br"));

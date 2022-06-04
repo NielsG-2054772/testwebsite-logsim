@@ -139,7 +139,6 @@ const getters = {
   },
 };
 
-// ik ben niet zeker of functies juist staan in acties/mutations (ik denk actions = complex, mutations = simpel?)
 const mutations = {
   addComponent(state, payload) {
     state.components.set(payload.id, {
@@ -153,8 +152,6 @@ const mutations = {
     if (getters.hasComponentOfId(state, payload)) {
       var newArr = [];
 
-      // TO DO: hashmap of inputs and logic analysers?
-      // I don't know why but array.filter wouldnt work :(
       state.inputs.forEach((input) => {
         if (input.id != payload.id) {
           newArr.push(input);
@@ -249,7 +246,6 @@ const actions = {
     if (state.state.components.has(payload.id)) {
       var pin = state.state.components.get(payload.id).component;
 
-      // TO DO: Make sur this is actually an input component? although this wont really cause crashes or errors i think?
       pin.state = payload.value;
     }
   },
@@ -269,7 +265,6 @@ const actions = {
   },
 
   //payload bevat id van te connecteren componenten welke in en welke out is
-  // TO DO: if existing wire -> just add onto that wire's connections!
   addWire(state, payload) {
     // add the wire
     var wire = new Wire(payload.id);

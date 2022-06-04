@@ -26,7 +26,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
 import store from "../store/index.js";
 import logicAnalyzerChart from "../components/logicAnalyzerChart.vue";
 export default {

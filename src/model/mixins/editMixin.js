@@ -121,8 +121,6 @@ export default {
         }
         this.currTemp.x = undefined;
         this.currTemp.y = undefined;
-
-        // drawMain(this.click);
       }
     },
     /**
@@ -148,9 +146,6 @@ export default {
           if (this.removeWire(i, addToUndo)) {
             ++wiresRemoved;
           }
-          // store.commit("simulationStore/componentStore/removeComponent", {
-          //   id: i,
-          // });
         }
         let outWireCopy = [...this.components.get(posString).outWireIds];
         for (let j of outWireCopy) {
@@ -158,10 +153,6 @@ export default {
           if (this.removeWire(j, addToUndo)) {
             ++wiresRemoved;
           }
-          // store.commit("simulationStore/componentStore/removeComponent", {
-          //   id: j,
-          // });
-
         }
 
         var viewcomp = this.components.get(posString);
@@ -188,7 +179,6 @@ export default {
         store.commit("simulationStore/componentStore/removeComponent", {
           id: component.id,
         });
-        //this.leds.rem(this.components.get(posString).id);
         this.components.delete(posString);
         saveMixin.methods.removeComponentFromLocal.call(this, posString);
         this.leds.delete(viewcomp.id);
@@ -208,7 +198,6 @@ export default {
           this.ctxMainCanv.lineWidth = 1;
         }
       }
-      // this.drawMain(this.click);
       drawMixin.methods.drawMain.call(this, this.click);
     },
     /**
@@ -234,7 +223,6 @@ export default {
       for (var i of this.wires.values()) {
         if (this.ctxMainCanv.isPointInPath(i.path, mousePos.x, mousePos.y)) {
           this.removeWire(i.wireId);
-          // this.drawMain(this.click);
           return true;
         }
       }

@@ -62,8 +62,6 @@ export default {
     loadCircuit() {
       var [file] = document.getElementById("fileUpload").files;
 
-      // this.readError = true;
-      //   this.$emit("load-JSON-event");
       var fr = new FileReader();
       if (file) {
         fr.readAsText(file);

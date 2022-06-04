@@ -145,24 +145,6 @@
     :height="canvas.canvHeight"
     :width="canvas.canvWidth"
   ></canvas>
-  <!-- <a href="#" @click="setLanguages('nl')">Nederlands</a>
-    <a href="#" @click="setLanguages('eng')">English</a> -->
-  <!-- <h1 id="title">
-      Deze tekst ziet ge alleen als er nog geen taal gekozen is
-    </h1> -->
-  <!-- <h3 id="state">State: {{ getCurrentComponent }}</h3> -->
-  <!-- <h1>
-      X: {{ click.x / zoom.scaleFactor }} Y:{{ click.y / zoom.scaleFactor }}
-    </h1>
-    <h2 id="debug">
-      offsets: {{ canvas.xOffset }}, {{ canvas.yOffset }} interval:
-      {{ canvas.gridInterval }}, scale: {{ zoom.scaleFactor }}
-    </h2>
-    
-    <h3 id="dragging state">Draggingstate {{ currentDragging }}</h3> -->
-
-  <!-- <button @click="zoomin">zoom in</button>
-  <button @click="zoomout">zoom out</button> -->
   <InputSequencerModal
     class="translatableModals"
     v-if="this.inputSequencerModal.displayInputSequencerModal"
@@ -227,9 +209,7 @@
 <script>
 import store from "../store/index.js";
 import InputSequencerModal from "../components/InputSequencerModal.vue";
-// import logicanalyzer from "../components/logicAnalyzerModal.vue"
 import AddComponentAction from "@/model/AddComponentAction";
-// import RemoveComponentAction from "@/model/RemoveComponentAction";
 import ImageModal from "../components/imageModal.vue";
 import DelayModal from "../components/DelayModal.vue";
 import ClockModal from "../components/ClockModal.vue";
@@ -244,9 +224,6 @@ import drawMixin from "@/model/mixins/drawMixin.js";
 import editMixin from "@/model/mixins/editMixin.js";
 import saveMixin from "@/model/mixins/saveMixin.js";
 import clickMixin from "@/model/mixins/clickMixin.js";
-// import MoveComponentAction from "@/model/MoveComponentAction";
-// import RemoveWireAction from "@/model/RemoveWireAction";
-// import AddWireAction from "@/model/AddWireAction";
 import IntersectionChecker from "@/model/IntersectionChecker";
 export default {
   name: "MainCanvas",
@@ -404,9 +381,6 @@ export default {
       store.dispatch("canvasStore/clearUndoStack");
       store.dispatch("canvasStore/clearRedoStack");
     },
-    /**
-     * TODO: comment
-     */
     undo() {
       var action = store.getters["canvasStore/popUndoStack"];
       if (action !== undefined) {
@@ -429,9 +403,6 @@ export default {
         }, 10);
       }
     },
-    /**
-     * TODO: comment
-     */
     redo() {
       var action = store.getters["canvasStore/popRedoStack"];
       if (action !== undefined) {
@@ -596,8 +567,8 @@ export default {
       this.canvas.xOffset = this.canvas.xMin - this.canvas.gridInterval;
       this.canvas.yOffset = this.canvas.yMin - this.canvas.gridInterval;
       let zoomSize =
-        this.canvas.canvWidth / (intervalsX * this.canvas.gridInterval);
-      this.ctxMainCanv.scale(zoomSize, zoomSize);
+        this.canvas.canvWidth / (intervalsX * this.canvas.gridInterval) -0.1;
+      this.ctxMainCanv.scale(zoomSize+0.1, zoomSize);
       this.zoom.prevScaleFactor = this.zoom.scaleFactor;
       this.zoom.scaleFactor = zoomSize;
     },
@@ -815,9 +786,6 @@ export default {
         y: pos.y - (pos.y % this.canvas.gridInterval),
       };
     },
-    /**
-     * TODO: comment
-     */
     resizeCanvas() {
       this.zoom.scaleFactor = 1;
       this.canvas.canvHeight =
@@ -1045,7 +1013,6 @@ export default {
      * Function that sets inputsequencer values in the model
      */
     setInputSequencerValues(vals, id, posString) {
-      //this.inputSequencerModal.inputSequencerValues = vals;
       if (
         store.getters["simulationStore/componentStore/getComponent"]({
           id: id,
@@ -1079,7 +1046,6 @@ export default {
         saveMixin.methods.addComponentToLocal.call(this, posString);
         this.highestId++;
       }
-      //saveMixin.methods.addComponentToLocal.call(this, store.getters.getComponent());
       this.hideInputSequencerModal();
     },
     /**
@@ -1215,14 +1181,12 @@ export default {
       if (oldValue == "wiring2" && newValue != "wiring1") {
         this.wires.delete(this.highestWireId);
       }
-
       if (newValue == "wiring1" || newValue == "wiring2") {
         this.$parent.setUndoRedoEnabled(false);
-      } else {
+      } else if (this.mode != "run") {
         this.$parent.setUndoRedoEnabled(true);
       }
 
-      // this.drawMain({ x: this.click.x, y: this.click.y });
       drawMixin.methods.drawMain.call(this, {
         x: this.click.x,
         y: this.click.y,

@@ -1,11 +1,5 @@
 <template>
   <div id="chart"></div>
-  <!-- <input
-    v-model="logicAnalyzerIndex"
-    type="number"
-    v-bind:max="this.getLogicAnalyzers.length"
-    min="0"
-  /-->
   <button id="clear-graph-btn" class="btn btn-danger" @click="clearData">
     Clear graph
   </button>

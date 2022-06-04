@@ -1,5 +1,4 @@
 <template>
-  <!-- <h1>Currently active: {{ currentActive }}</h1> -->
   <div id="toolbarDiv">
     <canvas
       id="toolbarCanv"
@@ -350,13 +349,6 @@ export default {
       );
     },
     resizeCanvas() {
-      // document.getElementById("toolbarDiv").style.height =
-      //   this.toolbarHeight + "px";
-      // document.getElementById("toolbarDiv").style.width =
-      //   this.toolbarWidth + "px";
-
-      // this.toolbarDiv.style.height = this.toolbarHeight;
-      // this.toolbarDiv.style.width = this.toolbarWidth;
       this.drawToolbar();
     },
     toolbarClicked(pos) {

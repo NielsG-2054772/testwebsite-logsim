@@ -56,22 +56,6 @@
                   Image maker
                 </button>
               </li>
-              <!-- <li class="nav-item dropdown">
-                <a
-                  class="dropdown-item dropdown-toggle"
-                  href="#"
-                  id="saveasDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Save as...
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="saveasDropdown">
-                  <li><a class="dropdown-item" href="#">PNG</a></li>
-                  <li><a class="dropdown-item" href="#">PDF</a></li>
-                  <li><a class="dropdown-item" href="#">XML</a></li>
-                </ul>
-              </li> -->
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -179,7 +163,6 @@ export default {
     },
     setLanguages(lang) {
       this.$parent.setLanguage(lang);
-      //store.commit("canvasStore/setCurrLanguage", lang);
       document.getElementById("language-select").innerHTML = lang.toUpperCase();
     },
     setLanguage(lang) {

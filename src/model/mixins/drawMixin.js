@@ -276,7 +276,9 @@ export default {
             this.canvas.yOffset +
             this.canvas.gridInterval / 10
         );
-      } else if (r.type == "logic-analyser") {
+      } else if  (!this.currentDragging && r.type == "logic-analyser" && this.componentArrays.currentAllowed.indexOf(
+        this.getCurrentComponent
+      ) !== -1) {
         this.ctxMainCanv.fillText(
           `# ${r.logicAnalyserId}`,
           r.x -
@@ -347,18 +349,6 @@ export default {
               this.currentDraggingComponent.type
             );
             this.ctxMainCanv.globalAlpha = 1;
-            //} else if (this.getCurrentComponent == "wiring2") {
-            //   // tried to draw wire to mouse pos when wiring, failed miserably
-            //   // this.wires.get(this.highestWireId).path = this.makeTempPath({
-            //   //     x: xTemp + this.canvas.xOffset,
-            //   //     y: yTemp + this.canvas.yOffset,
-            //   //   },);
-            //   let currWire = this.wires.get(this.highestWireId);
-            //   currWire.path = this.makeTempPath({
-            //     x: r.x + this.canvas.xOffset,
-            //     y: r.y + this.canvas.yOffset,
-            //   });
-            //   this.drawTempWire(currWire.path);
           } else {
             this.ctxMainCanv.globalAlpha = 0.25;
             this.drawComponent(

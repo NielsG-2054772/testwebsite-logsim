@@ -2,8 +2,6 @@ import { Action } from "@/model/Action";
 import AddWireAction from "@/model/AddWireAction";
 
 export default class RemoveWireAction extends Action {
-    // wireId, idFrom, idTo, entryFrom, entryTo, isCustom, inflPoints, path
-
     constructor(id, inputId, outputId, entryFrom, entryTo, isCustom, inflPoints,inTop, outTop, path, view) {
         super();
         this._id = id;

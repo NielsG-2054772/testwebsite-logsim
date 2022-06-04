@@ -1,9 +1,4 @@
 <template>
-  <!-- <div id="infocontainer">
-    <div id="scrollcontainer">
-      <TruthTable></TruthTable>
-    </div>
-  </div> -->
   <div id="infocontainer">
     <TruthTable id="scrollcontainer"></TruthTable>
   </div>

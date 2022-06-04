@@ -79,8 +79,6 @@ const actions = {
     state.state.RedoStack = [];
   },
 };
-// const modules = {
-//   }
 
 export default {
   namespaced: true,
